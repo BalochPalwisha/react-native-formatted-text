@@ -14,7 +14,7 @@ const openUrl = url => {
     if (supported) {
       Linking.openURL(url);
     } else {
-      console.warn("Don't know how to open URI: " + url);
+      // console.warn("Don't know how to open URI: " + url);
     }
   });
 };
@@ -75,7 +75,7 @@ const FormattedText = ({
       let m;
       while ((m = match.regex.exec(children)) != null) {
         ranges.push({
-          start: m.index,
+          start: m.index -1,
           end: m.index + m[0].length,
           style: match.style,
           onPress: match.onPress
@@ -94,7 +94,7 @@ const FormattedText = ({
   );
 
   if (ranges.length === 0) {
-    console.warn("no format found");
+    // console.warn("no format found");
     return <Text {...props}>{children}</Text>;
   }
 
@@ -145,7 +145,7 @@ const FormattedText = ({
         }
         key={index}
       >
-        {sub}
+        {sub.replace("@" , "")}
       </Text>
     );
 
